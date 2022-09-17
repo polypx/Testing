@@ -1,38 +1,38 @@
 #include <iostream>
- 
-using namespace std;
 
-class Box {
-   public:
-      // Constructor definition
-      Box(double l = 2.0, double b = 2.0, double h = 2.0) {
-         cout <<"Constructor called." << endl;
-         length = l;
-         breadth = b;
-         height = h;
-      }
-      double Volume() {
-         return length * breadth * height;
-      }
-      int compare(Box box) {
-         return this->Volume() > box.Volume();
-      }
-      
-   private:
-      double length;     // Length of a box
-      double breadth;    // Breadth of a box
-      double height;     // Height of a box
-};
 
-int main(void) {
-   Box Box1(3.3, 1.2, 1.5);    // Declare box1
-   Box Box2(8.5, 6.0, 2.0);    // Declare box2
+int main()
+{
+    int x{ 5 };
+    int& ref { x };  // get a reference to x
+    int* ptr{ &x };       // a pointer to x
+    int y{ 6 };
+    
+    std::cout << x << '\n';  // print the value of variable x
+    std::cout << &x << '\n'; // print the memory address of variable x
+    std::cout << *(&x) << '\n'; // print the memory address of variable x
 
-   if(Box1.compare(Box2)) {
-      cout << "Box2 is smaller than Box1" <<endl;
-   } else {
-      cout << "Box2 is equal to or larger than Box1" <<endl;
-   }
-   
-   return 0;
+    
+    std::cout << ptr << '\n'; // print the memory address of variable x
+    std::cout << *ptr << '\n'; // dereference, print the value pointed at
+
+    ptr = &y; // // change ptr to point at y
+    std::cout << *ptr << '\n'; // print the value pointed at now
+    std::cout << ptr << '\n'; // print the memory address of variable y
+
+    *ptr = 7; // The object at the address held by ptr assigned value 6
+                // (note that ptr is dereferenced here)
+
+    std::cout << *ptr << '\n'; // print the value pointed at now
+    std::cout << ptr << '\n'; // print the memory address of variable y
+
+    ref = *ptr; // whatever value pointed at give to x via ref
+    
+    std::cout << x;
+    std::cout << ref;  // use the reference to print x's value (5)
+    std::cout << *ptr << '\n'; // use the pointer to print x's value (5)
+
+    std::cout << typeid(&x).name() << '\n'; // print the type of &x, address is a pointer
+    
+    return 0;
 }
